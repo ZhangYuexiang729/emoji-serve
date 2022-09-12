@@ -1,0 +1,62 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "emoji"
+  },
+  "AccessToken": {
+    "dataSource": "emoji",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "emoji",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "emoji",
+    "public": true,
+    "options": {
+      "strictObjectIDCoercion": true
+    },
+    "relations": {
+      "Role": {
+        "type": "belongsTo",
+        "model": "role",
+        "foreignKey": "roleId"
+      },
+      "emoUsers": {
+        "type": "belongsTo",
+        "model": "emoUser",
+        "foreignKey": "principalId"
+      }
+    }
+  },
+  "Role": {
+    "dataSource": "emoji",
+    "public": true
+  },
+  "pcWallpaperList": {
+    "dataSource": "emoji",
+    "public": true
+  },
+  "emoUser": {
+    "dataSource": "emoji",
+    "public": true
+  },
+  "emojiPic": {
+    "dataSource": "emoji",
+    "public": true
+  }
+}

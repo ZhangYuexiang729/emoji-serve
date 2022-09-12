@@ -1,0 +1,72 @@
+{
+    "name": "role",
+    "description": "角色",
+    "base": "Role",
+    "idInjection": true,
+    "options": {
+      "validateUpsert": true
+    },
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "名称"
+      },
+      "date_created": {
+        "type": "date",
+        "required": true,
+        "description": "创建时间",
+        "defaultFn": "now"
+      },
+      "state": {
+        "type": "Number",
+        "required": true,
+        "description": "状态",
+        "default": 1,
+        "format": {
+          "bsonType": "switch",
+          "list": [
+            "禁用",
+            "启用"
+          ]
+        }
+      }
+    },
+    "validations": [],
+    "relations": {
+      "emoUser": {
+        "type": "hasMany",
+        "model": "emoUser",
+        "foreignKey": "roleId",
+        "through": "RoleMapping",
+        "keyThrough": "principalId"
+      }
+    },
+    "acls": [
+      {
+        "accessType": "*",
+        "principalType": "ROLE",
+        "principalId": "$everyone",
+        "permission": "DENY"
+      },
+      {
+        "accessType": "*",
+        "principalType": "ROLE",
+        "principalId": "超级管理员",
+        "permission": "ALLOW"
+      },
+      {
+        "accessType": "READ",
+        "principalType": "ROLE",
+        "principalId": "$owner",
+        "permission": "ALLOW"
+      },
+      {
+        "accessType": "READ",
+        "principalType": "ROLE",
+        "principalId": "团队管理员",
+        "permission": "ALLOW"
+      }
+    ],
+    "methods": {}
+  }
+  

@@ -1,0 +1,30 @@
+{
+  "name": "emojiPic",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      
+      "description": "名称",
+      "unique": true
+    },
+    "parentId": {
+      "type": "any",
+     
+      "description": "上级Id"
+    },
+    "emojiDetail": {
+      "type": "string",
+      "description": "图片详情",
+      "unique": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

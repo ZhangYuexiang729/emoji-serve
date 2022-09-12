@@ -1,0 +1,44 @@
+{
+  "name": "emoUser",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "roles": {
+      "type": "string"
+    },
+    "introduction": {
+      "type": "string"
+    },
+    "email": false,
+    "emailVerified": false
+  },
+  "validations": [],
+  "relations": {
+    "roles": {
+      "type": "hasMany",
+      "model": "role",
+      
+      "through": "RoleMapping",
+      "keyThrough": "roleId",
+      "description": "角色"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "超级管理员",
+      "permission": "ALLOW"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "超级管理员",
+      "permission": "ALLOW",
+      "property": "create"
+    }
+  ],
+  "methods": {}
+}
